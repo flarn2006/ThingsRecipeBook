@@ -119,6 +119,19 @@ if __name__ == '__main__':
 					add_thing_id(con, thing, flask.request.json['gameid'])
 			return 'ok'
 
+		@flask_app.route('/thing/<thing_id>')
+		def flask_thing(thing_id):
+			json = {}
+			with sqlite3.connect(RECIPES_DB) as con:
+				cur = con.cursor()
+				cur.execute('SELECT name FROM Thing WHERE id = ?', (thing_id,))
+				if (record := cur.fetchone()) is None:
+					flask.abort(404)
+				else:
+					json['name'] = record[0]
+					json['games'] = list(cur.execute('SELECT Game.gameid FROM ThingInGame INNER JOIN Game ON ThingInGame.game = Game.id WHERE thing = ?', (thing_id,)))
+					return json
+
 		@flask_app.route('/')
 		def flask_index():
 			with open('static/recipe_book.html', 'r') as f:
