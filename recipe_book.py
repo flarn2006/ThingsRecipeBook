@@ -3,6 +3,7 @@ from flask_cors import CORS
 import re
 from dataclasses import dataclass
 import sqlite3
+from os.path import isfile
 
 RECIPES_DB = 'recipes.db'
 
@@ -43,6 +44,12 @@ def add_to_db(recipe: Recipe):
 		con.commit()
 
 if __name__ == '__main__':
+	if not isfile(RECIPES_DB):
+		with open('schema.sql', 'r') as f:
+			schema = f.read()
+			with sqlite3.connect(RECIPES_DB) as con:
+				con.cursor().executescript(schema)
+
 	flask_app = flask.Flask(__name__)
 	CORS(flask_app)
 
