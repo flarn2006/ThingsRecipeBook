@@ -5,6 +5,11 @@ html {
   --color-fg: white;
   --color-shaded: #273138;
   --color-accent: #007AD8;
+  --color-thing1: #29B4FF;
+  --color-thing2: #6CDC5B;
+  --color-thing3: #FA4332;
+  --color-thing4: #FDD300;
+  --color-thing5: #E53872;
   background-color: var(--color-bg);
   color: var(--color-fg);
   font-family: 'IBM Plex Sans', sans-serif;
@@ -53,4 +58,37 @@ nav:hover {
 
 nav a {
   padding: 4pt;
+}
+
+td a {
+	font-weight: normal;
+  display: block;
+  color: inherit;
+}
+
+td a:hover {
+  color: var(--color-fg);
+}
+
+th, td {
+  border-radius: 6px;
+  background-color: var(--color-shaded);
+}
+
+th {
+  border: 2px solid white;
+  padding: 8px;
+}
+
+td {
+  border: 1px solid var(--row-color);
+  color: var(--row-color);
+  padding: 4px;
+}
+
+tr:nth-child(5n+1) { --row-color: var(--color-thing1); }
+tr:nth-child(5n+2) { --row-color: var(--color-thing2); }
+tr:nth-child(5n+3) { --row-color: var(--color-thing3); }
+tr:nth-child(5n+4) { --row-color: var(--color-thing4); }
+tr:nth-child(5n+5) { --row-color: var(--color-thing5); }
 }
