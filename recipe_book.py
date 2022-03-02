@@ -87,4 +87,9 @@ if __name__ == '__main__':
 					recipe_list.append(json)
 				return {'recipes':recipe_list}
 
+		@flask_app.route('/')
+		def flask_index():
+			with open('static/recipe_book.html', 'r') as f:
+				return f.read()
+
 		flask_app.run(port=8765)
