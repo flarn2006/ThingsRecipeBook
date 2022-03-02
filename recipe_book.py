@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import flask
 from flask_cors import CORS
 import re
