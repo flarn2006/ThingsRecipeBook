@@ -29,9 +29,9 @@ window.onload = function() {
 				json.recipes.forEach(function(recipe) {
 					const tr = document.createElement('tr');
 					const fields = [
-						{text: recipe.product, link: false},
-						{text: recipe.ingredients[0], link: true},
-						{text: recipe.ingredients[1], link: true},
+						{text: recipe.product.name, link: false},
+						{text: recipe.ingredients[0].name, link: true},
+						{text: recipe.ingredients[1].name, link: true},
 						{text: recipe.means, link: false}
 					];
 					fields.forEach(function(field) {

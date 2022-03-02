@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     Things Recipe Logger
-// @version  1.2
+// @version  1.3
 // @match    https://lab.latitude.io/main/things/*
 // @grant    none
 // ==/UserScript==
@@ -17,7 +17,11 @@ function callback(mutationsList, observer)
 	if (toast.innerText != toast_text) {
 		toast_text = toast.innerText;
 		const json = {toast:toast_text, selected:last_selected};
+		const usp = new URLSearchParams(location.search);
+		const gameid = usp.get('gameId');
+		if (gameid !== null) json.gameid = gameid;
 		console.log(console_prefix, json);
+
 		const xhr = new XMLHttpRequest();
 		xhr.open('POST', endpoint + '/recipe');
 		xhr.setRequestHeader('Content-Type', 'application/json');
