@@ -41,8 +41,11 @@ def add_to_db(recipe: Recipe):
 				thing_id = record[0]
 			thing_ids[field] = thing_id
 		
-		cur.execute('INSERT INTO Recipe VALUES (NULL, ?, ?, ?, ?, ?)', (thing_ids['ingredient1'], thing_ids['ingredient2'], thing_ids['product'], recipe.means, int(recipe.was_first)))
-		con.commit()
+		try:
+			cur.execute('INSERT INTO Recipe VALUES (NULL, ?, ?, ?, ?, ?)', (thing_ids['ingredient1'], thing_ids['ingredient2'], thing_ids['product'], recipe.means, int(recipe.was_first)))
+			con.commit()
+		except sqlite3.IntegrityError:
+			print('Looks like this recipe is already in the database.')
 
 if __name__ == '__main__':
 	if not isfile(RECIPES_DB):
