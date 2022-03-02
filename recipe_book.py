@@ -55,7 +55,7 @@ if __name__ == '__main__':
 				con.cursor().executescript(schema)
 
 	flask_app = flask.Flask(__name__)
-	CORS(flask_app)
+	CORS(flask_app, resources={'*': {'origins': 'https://lab.latitude.io/*'}})
 
 	with open('recipes.txt', 'a') as f:
 		@flask_app.route('/recipe', methods=['POST'])
