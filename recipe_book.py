@@ -79,7 +79,7 @@ if __name__ == '__main__':
 					FROM Thing ti1, Thing ti2, Thing tp, Recipe
 					WHERE ingredient1 = ti1.id AND ingredient2 = ti2.id AND product = tp.id
 					AND UPPER(tp.name) LIKE UPPER(?)||"%"
-					ORDER BY tp.name
+					ORDER BY UPPER(tp.name)
 				'''
 				recipe_list = []
 				for (i1, i2, product, means, was_first) in cur.execute(query, (product,)):
