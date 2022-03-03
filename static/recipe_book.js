@@ -52,7 +52,7 @@ window.onload = function() {
 		xhr.send();
 	};
 	search.addEventListener('input', doSearch);
-	search.addEventListener('blur', function() {
+	search.addEventListener('change', function() {
 		location.hash = '#' + encodeURIComponent(search.value);
 	});
 
