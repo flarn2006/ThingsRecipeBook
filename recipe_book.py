@@ -110,6 +110,10 @@ if __name__ == '__main__':
 					recipe_list.append(json)
 				return {'recipes':recipe_list}
 
+		@flask_app.route('/all_recipes')
+		def flask_all_recipes():
+			return flask_recipe_for('')
+
 		@flask_app.route('/things_in_game', methods=['POST'])
 		def flask_things_in_game():
 			with sqlite3.connect(RECIPES_DB) as con:
