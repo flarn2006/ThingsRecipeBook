@@ -70,7 +70,7 @@ td a:hover {
   color: var(--color-fg);
 }
 
-th, td {
+th, td, li {
   border-radius: 6px;
   background-color: var(--color-shaded);
 }
@@ -80,15 +80,80 @@ th {
   padding: 8px;
 }
 
-td {
+td, li {
   border: 1px solid var(--row-color);
   color: var(--row-color);
   padding: 4px;
 }
 
-tr:nth-child(5n+1) { --row-color: var(--color-thing1); }
-tr:nth-child(5n+2) { --row-color: var(--color-thing2); }
-tr:nth-child(5n+3) { --row-color: var(--color-thing3); }
-tr:nth-child(5n+4) { --row-color: var(--color-thing4); }
-tr:nth-child(5n+5) { --row-color: var(--color-thing5); }
+:nth-child(5n+1) { --row-color: var(--color-thing1); }
+:nth-child(5n+2) { --row-color: var(--color-thing2); }
+:nth-child(5n+3) { --row-color: var(--color-thing3); }
+:nth-child(5n+4) { --row-color: var(--color-thing4); }
+:nth-child(5n+5) { --row-color: var(--color-thing5); }
+
+dialog {
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  border: none;
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  overflow-y: scroll;
+}
+
+dialog button.close {
+  float: left;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-weight: bold;
+  border: 1px solid var(--color-accent);
+  transition: 100ms;
+  font-size: 16pt;
+}
+
+dialog button.close:hover {
+  border-color: var(--color-fg);
+}
+
+dialog button.close:active {
+  background-color: var(--color-accent);
+}
+
+dialog h1 {
+  font-weight: normal;
+}
+
+#game_search section {
+  border: 1px solid white;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 8px;
+  background-color: black;
+  vertical-align: top;
+}
+
+#game_search h2 {
+  margin-top: 0;
+  font-size: 14pt;
+  font-family: monospace;
+}
+
+#game_search_thing {
+  color: var(--color-thing1);
+  font-weight: bold;
+}
+
+li {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 2px;
+}
+
+li.highlight {
+  font-weight: bold;
+  border-width: 2px;
 }
