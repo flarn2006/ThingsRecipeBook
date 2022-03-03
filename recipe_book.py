@@ -5,6 +5,7 @@ import re
 from dataclasses import dataclass
 import sqlite3
 from os.path import isfile
+import time
 
 RECIPES_DB = 'recipes.db'
 
@@ -39,12 +40,14 @@ def add_thing_id(db: sqlite3.Connection, thing: str, gameid: None) -> int:
 		thing_id = record[0]
 	
 	if gameid is not None:
+		timestamp = int(time.time())
 		cur.execute('SELECT id FROM Game WHERE gameid = ?', (gameid,))
 		if (record := cur.fetchone()) is None:
-			cur.execute('INSERT INTO Game VALUES (NULL, ?)', (gameid,))
+			cur.execute('INSERT INTO Game VALUES (NULL, ?, ?)', (gameid, timestamp))
 			gameid_id = cur.lastrowid
 		else:
 			gameid_id = record[0]
+			cur.execute('UPDATE Game SET last_played = ? WHERE id = ?', (timestamp, gameid_id))
 
 		try:
 			cur.execute('INSERT INTO ThingInGame VALUES (NULL, ?, ?)', (thing_id, gameid_id))
@@ -143,8 +146,14 @@ if __name__ == '__main__':
 				if (record := cur.fetchone()) is None:
 					flask.abort(404)
 				else:
+					query = '''
+						SELECT Game.gameid
+						FROM ThingInGame INNER JOIN Game ON ThingInGame.game = Game.id
+						WHERE thing = ?
+						ORDER BY Game.last_played DESC
+					'''
 					json['name'] = record[0]
-					json['games'] = list(cur.execute('SELECT Game.gameid FROM ThingInGame INNER JOIN Game ON ThingInGame.game = Game.id WHERE thing = ?', (thing_id,)))
+					json['games'] = list(cur.execute(query, (thing_id,)))
 					return json
 
 		@flask_app.route('/')
