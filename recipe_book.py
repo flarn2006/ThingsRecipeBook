@@ -123,6 +123,17 @@ if __name__ == '__main__':
 					add_thing_id(con, thing, flask.request.json['gameid'])
 			return 'ok'
 
+		@flask_app.route('/game/<gameid>')
+		def flask_game(gameid):
+			with sqlite3.connect(RECIPES_DB) as con:
+				cur = con.cursor()
+				cur.execute('SELECT id FROM Game WHERE gameid = ?', (gameid,))
+				if (record := cur.fetchone()) is None:
+					flask.abort(404)
+				else:
+					things = list(cur.execute('SELECT Thing.id, name FROM Thing INNER JOIN ThingInGame ON ThingInGame.thing = Thing.id WHERE ThingInGame.game = ?', (record[0],)))
+					return {'things':[{'id':thing_id, 'name':thing_name} for (thing_id, thing_name) in things]}
+
 		@flask_app.route('/thing/<thing_id>')
 		def flask_thing(thing_id):
 			json = {}
