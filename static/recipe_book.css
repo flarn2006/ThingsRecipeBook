@@ -147,6 +147,10 @@ dialog h1 {
   font-family: monospace;
 }
 
+#game_search h2 a {
+	text-decoration: underline;
+}
+
 #game_search_thing {
   color: var(--color-thing1);
   font-weight: bold;
