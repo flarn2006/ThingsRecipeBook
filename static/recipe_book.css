@@ -86,7 +86,7 @@ td, li {
   padding: 4px;
 }
 
-tr.was_first > td:first-child::before {
+tr.was_first > td:first-child a::before {
   content: '★';
   float: right;
 }
