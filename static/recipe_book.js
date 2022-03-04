@@ -77,6 +77,7 @@ window.onload = function() {
 			const json = JSON.parse(this.responseText);
 			json.recipes.forEach(function(recipe) {
 				const tr = document.createElement('tr');
+				if (recipe.was_first) tr.classList.add('was_first');
 				const fields = [
 					{text: recipe.product.name, link: 'javascript:findGamesWithThing(' + recipe.product.id + ')', title: 'Find games containing this thing'}, //I'm not worried about XSS on a localhost server
 					{text: recipe.ingredients[0].name, link: '##', title: 'Find recipes for this thing'},

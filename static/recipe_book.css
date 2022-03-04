@@ -86,6 +86,11 @@ td, li {
   padding: 4px;
 }
 
+tr.was_first > td:first-child::before {
+  content: '★';
+  float: right;
+}
+
 :nth-child(5n+1) { --row-color: var(--color-thing1); }
 :nth-child(5n+2) { --row-color: var(--color-thing2); }
 :nth-child(5n+3) { --row-color: var(--color-thing3); }
