@@ -81,8 +81,8 @@ th {
 }
 
 td, li {
-  border: 1px solid var(--row-color);
-  color: var(--row-color);
+  border: 1px solid var(--cell-color);
+  color: var(--cell-color);
   padding: 4px;
 }
 
@@ -91,11 +91,11 @@ tr.was_first > td:first-child::before {
   float: right;
 }
 
-:nth-child(5n+1) { --row-color: var(--color-thing1); }
-:nth-child(5n+2) { --row-color: var(--color-thing2); }
-:nth-child(5n+3) { --row-color: var(--color-thing3); }
-:nth-child(5n+4) { --row-color: var(--color-thing4); }
-:nth-child(5n+5) { --row-color: var(--color-thing5); }
+:nth-child(5n+1) { --cell-color: var(--color-thing1); }
+:nth-child(5n+2) { --cell-color: var(--color-thing2); }
+:nth-child(5n+3) { --cell-color: var(--color-thing3); }
+:nth-child(5n+4) { --cell-color: var(--color-thing4); }
+:nth-child(5n+5) { --cell-color: var(--color-thing5); }
 
 dialog {
   box-sizing: border-box;
