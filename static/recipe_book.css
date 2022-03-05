@@ -50,6 +50,13 @@ a:hover {
   margin-top: 1em;
 }
 
+@media only screen and (max-width: 1000px) {
+  #instructions {
+    float: none;
+    max-width: none;
+  }
+}
+
 h1 {
   font-size: 24pt;
   margin-top: 8pt;
