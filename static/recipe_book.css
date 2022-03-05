@@ -34,30 +34,52 @@ input {
 
 a {
   transition: 200ms;
-  font-weight: bold;
   color: var(--color-fg);
-  text-decoration: none;
 }
 
 a:hover {
   color: var(--color-accent);
 }
 
-nav {
-  position: fixed;
-  right: 0; top: 0;
-  transition: 200ms;
-  opacity: 0.7;
+#instructions {
+  float: right;
+  max-width: 30%;
+  padding: 1em;
   background-color: var(--color-shaded);
-  padding: 4pt;
+  border-radius: 12px;
+  margin-top: 1em;
 }
 
-nav:hover {
-  opacity: 1.0;
+h1 {
+  font-size: 24pt;
+  margin-top: 8pt;
+  margin-bottom: 8pt;
 }
 
-nav a {
+.big {
+  display: block;
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+a.big {
+  position: relative;
+  transition: 300ms;
+  text-decoration: none;
+  background-color: var(--color-accent);
   padding: 4pt;
+  margin-bottom: 8pt;
+  text-align: center;
+  border-radius: 6px;
+}
+
+a.big:hover {
+  background-color: var(--color-thing1);
+  color: var(--color-fg);
+}
+
+a.big:active {
+  left: 3px; top: 3px;
 }
 
 td a {

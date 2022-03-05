@@ -6,12 +6,16 @@
 	<link rel="stylesheet" href="/static/recipe_book.css">
 	<script src="/static/recipe_book.js"></script>
 </head><body>
-	<nav>
-		<a href="https://lab.latitude.io/main/things/things" target="_blank">New game</a>
-		<a href="/static/things_recipe_logger.user.js">Install user script</a>
-	</nav>
-
 	<input id="search" type="text" placeholder="Search for things...">
+
+	<section id="instructions">
+		<h1>Things Recipe Book</h1>
+		<a class="big" href="https://lab.latitude.io/main/things/things" target="_blank">Start a new Things game</a>
+		<p><a href="/static/things_recipe_logger.user.js">Click here</a> if you haven't already to install the user script. You will need <a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/">Greasemonkey</a> or (untested) <a href="https://www.tampermonkey.net/">Tampermonkey</a>, so get that first if you don't have it. If the user script is not installed, no recipe or game data will be recorded.</p>
+		<p>To look up a recipe for a Thing, start typing its name in the search box above. You can also click the name of an ingredient to look up its recipe(s). Provided the user script is working properly, new recipes will automatically be added as you discover them.</p>
+		<p>To browse previously-played games containing a specific Thing, click its name in the leftmost column. Then, click the game's ID to open it in a new tab.</p>
+		<p class="big">Have fun!</p>
+	</section>
 
 	<table id="results">
 	<thead>
