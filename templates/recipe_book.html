@@ -9,7 +9,18 @@
 	<input id="search" type="text" placeholder="Search for things...">
 
 	<section id="instructions">
+		<a id="github" href="https://github.com/flarn2006/ThingsRecipeBook" target="_blank">Github</a>
 		<h1>Things Recipe Book</h1>
+		<div id="stats">
+		{% if 'error' in stats %}
+			<div class="error_text">{{ stats.error }}</div>
+		{% else %}
+			{{ stats.recipes }} recipe{{'' if stats.recipes == 1 else 's'}}
+			({{ stats.first }} first discovered)
+			for {{ stats.things }} thing{{'' if stats.things == 1 else 's'}},
+			in {{ stats.games }} game{{'' if stats.games == 1 else 's'}}
+		{% endif %}
+		</div>
 		<a class="big" href="https://lab.latitude.io/main/things/things" target="_blank">Start a new Things game</a>
 		<p><a href="/static/things_recipe_logger.user.js">Click here</a> if you haven't already to install the user script. You will need <a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/">Greasemonkey</a> or (untested) <a href="https://www.tampermonkey.net/">Tampermonkey</a>, so get that first if you don't have it. If the user script is not installed, no recipe or game data will be recorded.</p>
 		<p>To look up a recipe for a Thing, start typing its name in the search box above. You can also click the name of an ingredient to look up its recipe(s). Provided the user script is working properly, new recipes will automatically be added as you discover them.</p>

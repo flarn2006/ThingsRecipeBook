@@ -50,6 +50,19 @@ a:hover {
   margin-top: 1em;
 }
 
+#github {
+  display: block;
+  float: right;
+}
+
+#stats {
+  font-size: 10pt;
+}
+
+.error_text {
+  color: var(--color-thing3);
+}
+
 @media only screen and (max-width: 1000px) {
   #instructions {
     float: none;

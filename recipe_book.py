@@ -158,7 +158,25 @@ if __name__ == '__main__':
 
 		@flask_app.route('/')
 		def flask_index():
-			with open('static/recipe_book.html', 'r') as f:
-				return f.read()
+			try:
+				with sqlite3.connect(RECIPES_DB) as con:
+					stats_query = '''
+						SELECT (
+							SELECT COUNT(id) FROM Recipe
+						), (
+							SELECT COUNT(DISTINCT product) FROM Recipe
+						), (
+							SELECT COUNT(id) FROM Recipe WHERE was_first = 1
+						), (
+							SELECT COUNT(id) FROM Game
+						);
+					'''
+					cur = con.cursor()
+					cur.execute(stats_query)
+					record = cur.fetchone()
+					stats = {'recipes': record[0], 'things': record[1], 'first': record[2], 'games': record[3]}
+			except Exception as ex:
+				stats = {'error': str(ex)}
+			return flask.render_template('recipe_book.html', stats=stats)
 
 		flask_app.run(port=8765)
