@@ -50,6 +50,15 @@ a:hover {
   margin-top: 1em;
 }
 
+.button_row {
+  display: flex;
+}
+
+.button_row > .big {
+  flex-grow: 1;
+  margin: 4px;
+}
+
 #github {
   display: block;
   float: right;

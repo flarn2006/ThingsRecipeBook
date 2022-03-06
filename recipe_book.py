@@ -175,8 +175,15 @@ if __name__ == '__main__':
 					cur.execute(stats_query)
 					record = cur.fetchone()
 					stats = {'recipes': record[0], 'things': record[1], 'first': record[2], 'games': record[3]}
+
+					cur.execute('SELECT gameid FROM Game ORDER BY last_played DESC LIMIT 1')
+					if (record := cur.fetchone()) is not None:
+						lastgame = record[0]
+					else:
+						lastgame = None
 			except Exception as ex:
 				stats = {'error': str(ex)}
-			return flask.render_template('recipe_book.html', stats=stats)
+				lastgame = None
+			return flask.render_template('recipe_book.html', stats=stats, lastgame=lastgame)
 
 		flask_app.run(port=8765)
